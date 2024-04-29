@@ -4,7 +4,7 @@ import { Prop,Schema, SchemaFactory } from "@nestjs/mongoose";
 @Schema()
 export class User {
 
-    id?: string;
+    _id?: string;
 
     @Prop({ unique: true, required: true})
     email: string;
@@ -33,6 +33,7 @@ export class User {
 
     @Prop({ type: [String], default: ['user']})
     roles: string[]; //Role
+ 
 
 /*     @Prop({type: String}) // crear entidad address
     address: string

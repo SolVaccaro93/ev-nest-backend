@@ -61,7 +61,7 @@ async register(registerDto:RegisterUserDto):Promise <LoginResponse>{
 
   return{
     user: user,
-    token: this.getJwtToken({id:user.id})
+    token: this.getJwtToken({id:user._id})
   }
 }
 
@@ -95,6 +95,12 @@ async register(registerDto:RegisterUserDto):Promise <LoginResponse>{
     return  this.userModel.find(); //devuelve los usuarios
   }
 
+
+  async findUserByid(id:string){
+    const user = await this.userModel.findById(id); //busca el usuario
+    const{password,...rest} = user.toJSON(); //rest info propia del usuario
+    return rest;
+  }
   findOne(id: number) {
     return `This action returns a #${id} auth`;
   }
